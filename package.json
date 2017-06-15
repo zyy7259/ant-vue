@@ -1,0 +1,25 @@
+{
+  "name": "ant-vue",
+  "version": "0.0.1",
+  "description": "antd with vue",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zyy7259/ant-vue.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zyy7259/ant-vue/issues"
+  },
+  "homepage": "https://github.com/zyy7259/ant-vue#readme",
+  "devDependencies": {
+    "eslint-config-zoro-vue": "^0.1.9",
+    "stylelint-config-zoro": "*",
+    "zoro-kit": "^0.1.8",
+    "zoro-kit-vue": "^0.1.9"
+  }
+}

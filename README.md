@@ -1,2 +1,2 @@
-# antd-vue
+# ant-vue
 antd with vue
