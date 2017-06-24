@@ -1,1 +1,1 @@
-module.exports = 'ant-vue';
+export default "ant-vue";

@@ -4,7 +4,14 @@
   "description": "antd with vue",
   "main": "lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clear": "rm -rf dist lib es",
+    "dev": "npm run clear && webpack-dev-server",
+    "css:lib": "postcss \"src/**/*.css\" --dir lib --base src",
+    "css:es": "postcss \"src/**/*.css\" --dir es --base src",
+    "css": "run-p -n css:*",
+    "compile": "babel src --out-dir lib && NO_MODULES=true babel src --out-dir es",
+    "prod": "npm run clear && NODE_ENV=production webpack && npm run compile && npm run css",
+    "prepublish": "npm run prod"
   },
   "repository": {
     "type": "git",
@@ -17,9 +24,9 @@
   },
   "homepage": "https://github.com/zyy7259/ant-vue#readme",
   "devDependencies": {
-    "eslint-config-zoro-vue": "^0.1.9",
+    "eslint-config-zoro-vue": "*",
     "stylelint-config-zoro": "*",
-    "zoro-kit": "^0.1.8",
-    "zoro-kit-vue": "^0.1.9"
+    "zoro-kit": "^0.1.21",
+    "zoro-kit-vue": "^0.1.21"
   }
 }
