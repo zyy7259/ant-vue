@@ -26,7 +26,7 @@
   "devDependencies": {
     "eslint-config-zoro-vue": "*",
     "stylelint-config-zoro": "*",
-    "zoro-kit": "^0.1.21",
-    "zoro-kit-vue": "^0.1.21"
+    "zoro-kit": "*",
+    "zoro-kit-vue": "*"
   }
 }
