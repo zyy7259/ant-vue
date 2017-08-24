@@ -4,7 +4,7 @@
   </svg>
 </template>
 <script>
-export default {
+const Icon = {
   props: {
     type: {
       type: String,
@@ -13,10 +13,16 @@ export default {
   },
   data() {
     return {
-      prefix: "anticon"
+      prefix: 'anticon'
     };
   }
 };
+
+export default Icon;
+
+export function install(Vue) {
+  Vue.component('Icon', Icon);
+}
 </script>
 <style>
 /* copied from http://www.iconfont.cn/ */

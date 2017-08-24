@@ -22,8 +22,8 @@
 </template>
 
 <script>
-import Btn from "src/component/btn";
-import Icon from "src/component/icon";
+import Btn from 'src/component/btn';
+import Icon from 'src/component/icon';
 
 const Modal = {
   components: {
@@ -37,19 +37,19 @@ const Modal = {
     },
     title: {
       type: String,
-      default: ""
+      default: ''
     },
     content: {
       type: [String, Array],
-      default: ""
+      default: ''
     },
     okText: {
       type: String,
-      default: "确 定"
+      default: '确 定'
     },
     cancelText: {
       type: String,
-      default: "取 消"
+      default: '取 消'
     },
     iconType: {
       type: String
@@ -62,7 +62,7 @@ const Modal = {
   data() {
     return {
       visibleInner: false,
-      confirmType: ""
+      confirmType: ''
     };
   },
   computed: {
@@ -77,23 +77,23 @@ const Modal = {
     },
     confirmIconType() {
       switch (this.confirmType) {
-        case "confirm":
-          return "exclamation-circle";
-        case "info":
-          return "info-circle";
-        case "success":
-          return "check-circle";
-        case "error":
-          return "cross-circle";
-        case "warning":
-          return "exclamation-circle";
+        case 'confirm':
+          return 'exclamation-circle';
+        case 'info':
+          return 'info-circle';
+        case 'success':
+          return 'check-circle';
+        case 'error':
+          return 'cross-circle';
+        case 'warning':
+          return 'exclamation-circle';
         default:
-          return "";
+          return '';
       }
     }
   },
   watch: {
-    visible: "onVisibleChange"
+    visible: 'onVisibleChange'
   },
   methods: {
     onVisibleChange() {
@@ -105,12 +105,12 @@ const Modal = {
     },
     show() {
       this.visibleInner = true;
-      document.body.style.overflow = "hidden";
+      document.body.style.overflow = 'hidden';
       return Promise.resolve();
     },
     hide() {
       this.visibleInner = false;
-      document.body.style.overflow = "";
+      document.body.style.overflow = '';
       return Promise.resolve();
     },
     onClickMask() {
@@ -120,12 +120,12 @@ const Modal = {
     },
     onClickCancel() {
       this.hide().then(() => {
-        this.$emit("cancel");
+        this.$emit('cancel');
       });
     },
     onClickOK() {
       this.hide().then(() => {
-        this.$emit("ok");
+        this.$emit('ok');
       });
     }
   },
@@ -140,25 +140,25 @@ const Modal = {
   },
   info() {
     return Modal.confirm({
-      confirmType: "info"
+      confirmType: 'info'
     });
   },
   success() {
     return Modal.confirm({
-      confirmType: "success"
+      confirmType: 'success'
     });
   },
   error() {
     return Modal.confirm({
-      confirmType: "error"
+      confirmType: 'error'
     });
   },
   warning() {
     return Modal.confirm({
-      confirmType: "warning"
+      confirmType: 'warning'
     });
   },
-  confirm({ confirmType = "confirm", ...props }) {
+  confirm({ confirmType = 'confirm', ...props }) {
     return new Vue({
       ...Modal,
       ...{
@@ -170,6 +170,10 @@ const Modal = {
 };
 
 export default Modal;
+
+export function install(Vue) {
+  Vue.component('Modal', Modal);
+}
 </script>
 
 <style lang='postcss'>

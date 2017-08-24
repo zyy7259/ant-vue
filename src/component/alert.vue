@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import Icon from "./icon";
+import Icon from './icon';
 
-export default {
+const Alert = {
   components: {
     Icon
   },
@@ -17,7 +17,7 @@ export default {
     type: {
       type: String,
       validator(value) {
-        return ["success", "info", "warning", "error"].indexOf(value) !== -1;
+        return ['success', 'info', 'warning', 'error'].indexOf(value) !== -1;
       }
     },
     closable: {
@@ -26,15 +26,15 @@ export default {
     },
     closeText: {
       type: String,
-      default: ""
+      default: ''
     },
     message: {
       type: String,
-      default: ""
+      default: ''
     },
     description: {
       type: String,
-      default: ""
+      default: ''
     },
     showIcon: {
       type: Boolean,
@@ -55,16 +55,16 @@ export default {
   computed: {
     iconType() {
       switch (this.type) {
-        case "success":
-          return "check-circle";
-        case "info":
-          return "";
-        case "warning":
-          return "exclamation-circle";
-        case "error":
-          return "cross-circle";
+        case 'success':
+          return 'check-circle';
+        case 'info':
+          return '';
+        case 'warning':
+          return 'exclamation-circle';
+        case 'error':
+          return 'cross-circle';
         default:
-          return "";
+          return '';
       }
     }
   },
@@ -73,10 +73,16 @@ export default {
       this.close();
     },
     close() {
-      this.$emit("close");
+      this.$emit('close');
     }
   }
 };
+
+export default Alert;
+
+export function install(Vue) {
+  Vue.component('Alert', Alert);
+}
 </script>
 
 <style>

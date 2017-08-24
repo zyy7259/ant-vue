@@ -15,10 +15,10 @@
 </template>
 
 <script>
-import Icon from "./icon";
-import Alert from "./alert";
+import Icon from './icon';
+import Alert from './alert';
 
-export default {
+const Loading = {
   components: {
     Icon,
     Alert
@@ -30,7 +30,7 @@ export default {
     },
     loadingClass: {
       type: String,
-      default: ""
+      default: ''
     },
     error: {
       type: [Object, String],
@@ -54,11 +54,11 @@ export default {
     },
     message: {
       type: String,
-      default: ""
+      default: ''
     },
     description: {
       type: String,
-      default: ""
+      default: ''
     }
   },
   data() {
@@ -73,15 +73,15 @@ export default {
     },
     errorMsg() {
       if (!this.errorInner) {
-        return "";
+        return '';
       }
-      return this.errorInner.msg || this.errorInner.message || "unknown error";
+      return this.errorInner.msg || this.errorInner.message || 'unknown error';
     }
   },
   watch: {
-    loading: "resetLoading",
-    error: "resetError",
-    promise: "resetPromise"
+    loading: 'resetLoading',
+    error: 'resetError',
+    promise: 'resetPromise'
   },
   methods: {
     resetLoading() {
@@ -109,6 +109,12 @@ export default {
     this.resetPromise();
   }
 };
+
+export default Loading;
+
+export function install(Vue) {
+  Vue.component('Loading', Loading);
+}
 </script>
 
 <style lang='postcss'>

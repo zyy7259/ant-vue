@@ -6,14 +6,14 @@
 </template>
 
 <script>
-import Loading from "./loading";
+import Loading from './loading';
 
 const sizeToClass = {
-  small: "sm",
-  large: "lg"
+  small: 'sm',
+  large: 'lg'
 };
 
-export default {
+const Button = {
   components: {
     Loading
   },
@@ -23,7 +23,7 @@ export default {
     },
     htmlType: {
       type: String,
-      default: "button"
+      default: 'button'
     },
     icon: {
       type: String
@@ -56,7 +56,7 @@ export default {
   },
   computed: {
     btnClass() {
-      let clazz = "ant-btn";
+      let clazz = 'ant-btn';
       if (this.type) {
         clazz += ` ant-btn-${this.type}`;
       }
@@ -69,11 +69,17 @@ export default {
   methods: {
     onClick() {
       if (!this.loading) {
-        this.$emit("click");
+        this.$emit('click');
       }
     }
   }
 };
+
+export default Button;
+
+export function install(Vue) {
+  Vue.component('Button', Button);
+}
 </script>
 
 <style lang='postcss'>

@@ -17,9 +17,9 @@
 </template>
 
 <script>
-import Icon from "src/component/icon";
+import Icon from 'src/component/icon';
 
-export default {
+const InputNumber = {
   components: {
     Icon
   },
@@ -42,7 +42,7 @@ export default {
     },
     value: {
       type: [Number, String],
-      default: ""
+      default: ''
     },
     disabled: {
       type: Boolean,
@@ -56,8 +56,8 @@ export default {
   },
   data() {
     return {
-      currValue: "",
-      prevValue: "",
+      currValue: '',
+      prevValue: '',
       error: false,
       reg: null,
       acceptFloat: false
@@ -69,18 +69,18 @@ export default {
     }
   },
   watch: {
-    value: "resetValue",
+    value: 'resetValue',
     currValue() {
       // 重置错误
       this.error = false;
       // 格式化 currValue
-      const str = `${  this.currValue}`;
+      const str = `${this.currValue}`;
       if (str) {
         // 正则解析
         const match = str.match(this.reg);
         // 如果没有匹配则置空
         if (!match) {
-          this.currValue = "";
+          this.currValue = '';
           return;
         }
         // 如果部分匹配那么只保留匹配到的值
@@ -107,9 +107,9 @@ export default {
     },
     error() {
       if (this.error) {
-        this.$emit("error");
+        this.$emit('error');
       } else {
-        this.$emit("errorclear");
+        this.$emit('errorclear');
       }
     }
   },
@@ -170,15 +170,15 @@ export default {
       if (this.valueChanged) {
         // 记录当前值为 prevValue
         this.prevValue = currValue;
-        this.$emit("input", currValue);
+        this.$emit('input', currValue);
       }
     }
   },
   created() {
     this.resetValue();
     // check if accept float
-    const step = `${  this.step}`;
-    const parsedStep = `${  parseInt(step, 10)}`;
+    const step = `${this.step}`;
+    const parsedStep = `${parseInt(step, 10)}`;
     if (step !== parsedStep) {
       this.acceptFloat = true;
     }
@@ -186,6 +186,12 @@ export default {
     this.reg = this.acceptFloat ? /[-+.0-9]+/ : /[0-9]+/;
   }
 };
+
+export default InputNumber;
+
+export function install(Vue) {
+  Vue.component('InputNumber', InputNumber);
+}
 </script>
 
 <style>

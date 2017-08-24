@@ -15,10 +15,10 @@
 </template>
 
 <script>
-import { containsNode } from "src/util/dom";
-import Icon from "./icon";
+import { containsNode } from 'src/util/dom';
+import Icon from './icon';
 
-export default {
+const Select = {
   components: {
     Icon
   },
@@ -26,7 +26,7 @@ export default {
     value: null,
     placeholder: {
       type: String,
-      default: ""
+      default: ''
     },
     list: {
       type: Array,
@@ -34,7 +34,7 @@ export default {
     },
     textKey: {
       type: String,
-      default: "text"
+      default: 'text'
     },
     disabled: {
       type: Boolean,
@@ -48,7 +48,7 @@ export default {
     };
   },
   watch: {
-    value: "resetValue"
+    value: 'resetValue'
   },
   methods: {
     show() {
@@ -67,7 +67,7 @@ export default {
     },
     select(item) {
       this.selectedItem = item;
-      this.$emit("input", item);
+      this.$emit('input', item);
       this.hide();
     },
     resetValue() {
@@ -77,12 +77,18 @@ export default {
   created() {
     this.resetValue();
     this.bodyClickHandler = this.onBodyClick.bind(this);
-    document.body.addEventListener("click", this.bodyClickHandler);
+    document.body.addEventListener('click', this.bodyClickHandler);
   },
   destroyed() {
-    document.body.removeEventListener("click", this.bodyClickHandler);
+    document.body.removeEventListener('click', this.bodyClickHandler);
   }
 };
+
+export default Select;
+
+export function install(Vue) {
+  Vue.component('Select', Select);
+}
 </script>
 
 <style>
