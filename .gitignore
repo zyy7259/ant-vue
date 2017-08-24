@@ -1,6 +1,8 @@
 lib/
 dist/
 es/
+.history
+.idea
 
 # Logs
 logs

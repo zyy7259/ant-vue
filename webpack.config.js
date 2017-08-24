@@ -1,5 +1,5 @@
 const config = require('zoro-kit-vue/webpack.config')({
-  lib: true,
+  library: true,
   config: {
     output: {
       filename: 'ant-vue.js',
@@ -8,5 +8,6 @@ const config = require('zoro-kit-vue/webpack.config')({
   }
 });
 
-console.log(config);
+// console.log(config);
+
 module.exports = config;

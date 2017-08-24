@@ -1,3 +1,3 @@
-const config = require("zoro-kit/postcss.config.js");
+const config = require("zoro-kit/postcss.config.js")();
 
 module.exports = config;
