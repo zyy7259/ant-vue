@@ -1,21 +1,19 @@
-import Alert, { install as installAlert } from './component/alert';
-import Button, { install as installButton } from './component/btn';
-import Icon, { install as installIcon } from './component/icon';
-import InputNumber, {
-  install as installInputNumber
-} from './component/input-number';
-import Loading, { install as installLoading } from './component/loading';
-import Modal, { install as installModal } from './component/modal';
-import Select, { install as installSelect } from './component/select';
+import Alert from './component/alert';
+import Btn from './component/btn';
+import Icon from './component/icon';
+import InputNumber from './component/input-number';
+import Loading from './component/loading';
+import Modal from './component/modal';
+import Sel from './component/select';
 
-export { Alert, Button, Icon, InputNumber, Loading, Modal, Select };
+export { Alert, Btn, Icon, InputNumber, Loading, Modal, Sel };
 
 export function install(Vue, options = {}) {
-  installAlert(Vue, options.alert);
-  installButton(Vue, options.btn);
-  installIcon(Vue, options.icon);
-  installInputNumber(Vue, options.inputNumber);
-  installLoading(Vue, options.loading);
-  installModal(Vue, options.modal);
-  installSelect(Vue, options.select);
+  Vue.use(Alert, options.alert);
+  Vue.use(Btn, options.btn);
+  Vue.use(Icon, options.icon);
+  Vue.use(InputNumber, options.inputNumber);
+  Vue.use(Loading, options.loading);
+  Vue.use(Modal, options.modal);
+  Vue.use(Sel, options.select);
 }

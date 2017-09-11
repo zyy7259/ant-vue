@@ -20,9 +20,9 @@ const Icon = {
 
 export default Icon;
 
-export function install(Vue) {
+Icon.install = function install(Vue) {
   Vue.component('Icon', Icon);
-}
+};
 </script>
 <style>
 /* copied from http://www.iconfont.cn/ */

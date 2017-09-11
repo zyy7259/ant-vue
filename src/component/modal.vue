@@ -1,9 +1,9 @@
 <template>
-  <div v-if='visibleInner'>
+  <div v-if='visible'>
     <div class='ant-modal-mask'></div>
     <div class='ant-modal-wrap' @click='onClickMask'>
       <div class='ant-modal' :class='{[`ant-modal-confirm ant-modal-confirm-${confirmType}`]: isConfirm}'>
-        <Icon type='cross' v-if='!isConfirm' class='ant-modal-close'></Icon>
+        <Icon type='cross' v-if='!isConfirm' class='ant-modal-close' @click.native='clickCancel'></Icon>
         <Icon :type='iconType || confirmIconType' v-if='isConfirm' class='ant-modal-confirm-icon'></Icon>
         <div class='ant-modal-header'>{{title}}</div>
         <div class='ant-modal-body'>
@@ -13,8 +13,8 @@
           <slot v-else></slot>
         </div>
         <div class='ant-modal-footer'>
-          <btn size='large' @click='onClickCancel'>{{cancelText}}</btn>
-          <btn type='primary' size='large' @click='onClickOK'>{{okText}}</btn>
+          <btn size='large' @click='clickCancel'>{{cancelText}}</btn>
+          <btn type='primary' size='large' @click='clickOK' :loading='oking'>{{okText}}</btn>
         </div>
       </div>
     </div>
@@ -24,6 +24,8 @@
 <script>
 import Btn from 'src/component/btn';
 import Icon from 'src/component/icon';
+
+let Vue;
 
 const Modal = {
   components: {
@@ -57,12 +59,16 @@ const Modal = {
     maskClosable: {
       type: Boolean,
       default: false
+    },
+    onOK: {
+      type: Function,
+      default: () => {}
     }
   },
   data() {
     return {
-      visibleInner: false,
-      confirmType: ''
+      confirmType: '',
+      oking: false
     };
   },
   computed: {
@@ -104,29 +110,49 @@ const Modal = {
       }
     },
     show() {
-      this.visibleInner = true;
       document.body.style.overflow = 'hidden';
-      return Promise.resolve();
+      this.$emit('update:visible', true);
+      return Promise.resolve().then(() => {
+        this.$emit('show');
+      });
     },
     hide() {
-      this.visibleInner = false;
       document.body.style.overflow = '';
-      return Promise.resolve();
+      this.$emit('update:visible', false);
+      return Promise.resolve().then(() => {
+        this.$emit('hide');
+      });
     },
     onClickMask() {
       if (this.maskClosable) {
         this.hide();
       }
     },
-    onClickCancel() {
+    clickCancel() {
       this.hide().then(() => {
         this.$emit('cancel');
       });
     },
-    onClickOK() {
-      this.hide().then(() => {
-        this.$emit('ok');
-      });
+    clickOK() {
+      const hide = () => {
+        return this.hide().then(() => {
+          this.$emit('ok');
+        });
+      };
+      const ok = this.onOK();
+      if (ok.then) {
+        this.oking = true;
+        ok
+          .then(() => {
+            this.oking = false;
+            return hide();
+          })
+          .catch(() => {
+            this.oking = false;
+          });
+      } else {
+        return hide();
+      }
     }
   },
   mounted() {
@@ -171,9 +197,10 @@ const Modal = {
 
 export default Modal;
 
-export function install(Vue) {
+Modal.install = function install(vue) {
+  Vue = vue;
   Vue.component('Modal', Modal);
-}
+};
 </script>
 
 <style lang='postcss'>

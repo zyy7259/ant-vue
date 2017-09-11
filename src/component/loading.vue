@@ -112,9 +112,9 @@ const Loading = {
 
 export default Loading;
 
-export function install(Vue) {
+Loading.install = function install(Vue) {
   Vue.component('Loading', Loading);
-}
+};
 </script>
 
 <style lang='postcss'>

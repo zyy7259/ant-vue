@@ -18,7 +18,7 @@
 import { containsNode } from 'src/util/dom';
 import Icon from './icon';
 
-const Select = {
+const Sel = {
   components: {
     Icon
   },
@@ -84,11 +84,11 @@ const Select = {
   }
 };
 
-export default Select;
+export default Sel;
 
-export function install(Vue) {
-  Vue.component('Select', Select);
-}
+Sel.install = function install(Vue) {
+  Vue.component('Sel', Sel);
+};
 </script>
 
 <style>

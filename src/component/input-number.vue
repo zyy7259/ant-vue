@@ -189,9 +189,9 @@ const InputNumber = {
 
 export default InputNumber;
 
-export function install(Vue) {
+InputNumber.install = function install(Vue) {
   Vue.component('InputNumber', InputNumber);
-}
+};
 </script>
 
 <style>

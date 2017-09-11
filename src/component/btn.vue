@@ -13,7 +13,7 @@ const sizeToClass = {
   large: 'lg'
 };
 
-const Button = {
+const Btn = {
   components: {
     Loading
   },
@@ -75,11 +75,11 @@ const Button = {
   }
 };
 
-export default Button;
+export default Btn;
 
-export function install(Vue) {
-  Vue.component('Button', Button);
-}
+Btn.install = function install(Vue) {
+  Vue.component('Btn', Btn);
+};
 </script>
 
 <style lang='postcss'>

@@ -80,9 +80,9 @@ const Alert = {
 
 export default Alert;
 
-export function install(Vue) {
+Alert.install = function install(Vue) {
   Vue.component('Alert', Alert);
-}
+};
 </script>
 
 <style>
