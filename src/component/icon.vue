@@ -8,14 +8,14 @@ const Icon = {
   props: {
     type: {
       type: String,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
-      prefix: 'anticon'
+      prefix: 'anticon',
     };
-  }
+  },
 };
 
 export default Icon;
@@ -24,17 +24,3 @@ Icon.install = function install(Vue) {
   Vue.component('Icon', Icon);
 };
 </script>
-<style>
-/* copied from http://www.iconfont.cn/ */
-.anticon {
-  width: 1em;
-  height: 1em;
-  vertical-align: -0.15em;
-  fill: currentColor;
-  overflow: hidden;
-}
-/* custom */
-.anticon {
-  color: #999;
-}
-</style>

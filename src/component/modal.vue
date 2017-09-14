@@ -30,45 +30,45 @@ let Vue;
 const Modal = {
   components: {
     Btn,
-    Icon
+    Icon,
   },
   props: {
     visible: {
       type: Boolean,
-      default: false
+      default: false,
     },
     title: {
       type: String,
-      default: ''
+      default: '',
     },
     content: {
       type: [String, Array],
-      default: ''
+      default: '',
     },
     okText: {
       type: String,
-      default: '确 定'
+      default: '确 定',
     },
     cancelText: {
       type: String,
-      default: '取 消'
+      default: '取 消',
     },
     iconType: {
-      type: String
+      type: String,
     },
     maskClosable: {
       type: Boolean,
-      default: false
+      default: false,
     },
     onOK: {
       type: Function,
-      default: () => {}
-    }
+      default: () => {},
+    },
   },
   data() {
     return {
       confirmType: '',
-      oking: false
+      oking: false,
     };
   },
   computed: {
@@ -96,10 +96,10 @@ const Modal = {
         default:
           return '';
       }
-    }
+    },
   },
   watch: {
-    visible: 'onVisibleChange'
+    visible: 'onVisibleChange',
   },
   methods: {
     onVisibleChange() {
@@ -153,7 +153,7 @@ const Modal = {
       } else {
         return hide();
       }
-    }
+    },
   },
   mounted() {
     this.onVisibleChange();
@@ -166,22 +166,22 @@ const Modal = {
   },
   info() {
     return Modal.confirm({
-      confirmType: 'info'
+      confirmType: 'info',
     });
   },
   success() {
     return Modal.confirm({
-      confirmType: 'success'
+      confirmType: 'success',
     });
   },
   error() {
     return Modal.confirm({
-      confirmType: 'error'
+      confirmType: 'error',
     });
   },
   warning() {
     return Modal.confirm({
-      confirmType: 'warning'
+      confirmType: 'warning',
     });
   },
   confirm({ confirmType = 'confirm', ...props }) {
@@ -189,10 +189,10 @@ const Modal = {
       ...Modal,
       ...{
         propsData: { visible: true, ...props },
-        data: { ...Modal.data(), confirmType }
-      }
+        data: { ...Modal.data(), confirmType },
+      },
     });
-  }
+  },
 };
 
 export default Modal;
@@ -202,133 +202,3 @@ Modal.install = function install(vue) {
   Vue.component('Modal', Modal);
 };
 </script>
-
-<style lang='postcss'>
-.ant-modal-mask {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  background-color: rgba(0, 0, 0, 0.6);
-}
-
-.ant-modal-wrap {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  overflow: auto;
-}
-
-.ant-modal {
-  position: relative;
-  margin: 100px auto 24px;
-  width: 520px;
-  background-color: white;
-  border-radius: 4px;
-  box-shadow: 0 2px 8px rgba(0,0,0,.2);
-}
-
-.ant-modal-close {
-  position: absolute;
-  cursor: pointer;
-  top: 16px;
-  right: 16px;
-  font-size: 14px;
-  font-weight: 700;
-  color: rgba(0, 0, 0, 0.45);
-}
-
-.ant-modal-header {
-  padding: 14px 16px;
-  color: rgba(0, 0, 0, 0.65);
-  background-color: #fff;
-  border-radius: 4px 4px 0 0;
-  border-bottom: 1px solid #e9e9e9;
-}
-
-.ant-modal-body {
-  padding: 16px;
-  font-size: 12px;
-  line-height: 1.5;
-}
-
-.ant-modal-footer {
-  padding: 10px 16px;
-  text-align: right;
-  border-top: 1px solid #e9e9e9;
-  border-radius: 0 0 4px 4px;
-
-  button + button {
-    margin-left: 8px;
-  }
-}
-
-.ant-modal-confirm {
-  width: 420px;
-  padding: 30px 40px 30px 82px;
-  line-height: 18px;
-
-  .ant-modal-header {
-    padding: 0;
-    border: 0;
-    font-weight: 700;
-    font-size: 14px;
-  }
-
-  .ant-modal-body {
-    margin-top: 8px;
-    padding: 0;
-    border: 0;
-    color: rgba(0, 0, 0, 0.65);
-    font-size: 12px;
-  }
-
-  .ant-modal-footer {
-    margin-top: 30px;
-    padding: 0;
-    border: 0;
-  }
-
-  .ant-modal-confirm-icon {
-    position: absolute;
-    top: 30px;
-    left: 40px;
-    font-size: 26px;
-  }
-
-  &-confirm {
-    .ant-modal-confirm-icon {
-      color: #ffbf00;
-    }
-  }
-
-  &-info {
-    .ant-modal-confirm-icon {
-      color: #108ee9;
-    }
-  }
-
-  &-success {
-    .ant-modal-confirm-icon {
-      color: #00a854;
-    }
-  }
-
-  &-error {
-    .ant-modal-confirm-icon {
-      color: #f04134;
-    }
-  }
-
-  &-warning {
-    .ant-modal-confirm-icon {
-      color: #ffbf00;
-    }
-  }
-}
-</style>

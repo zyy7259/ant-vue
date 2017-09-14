@@ -6,12 +6,14 @@
   "scripts": {
     "clear": "rm -rf dist lib es",
     "dev": "npm run clear && webpack-dev-server",
-    "css:lib": "postcss \"src/**/*.css\" --dir lib --base src",
-    "css:es": "postcss \"src/**/*.css\" --dir es --base src",
+    "css:lib": "postcss \"src/style/**/*.css\" --dir lib --base src",
+    "css:es": "postcss \"src/style/**/*.css\" --dir es --base src",
     "css": "run-p -n css:*",
-    "compile": "babel src --out-dir lib && NO_MODULES=true babel src --out-dir es",
-    "prod": "npm run clear && NODE_ENV=production webpack && npm run compile && npm run css",
-    "prepublish": "npm run prod"
+    "compile":
+      "babel src --out-dir lib && NO_MODULES=true babel src --out-dir es",
+    "prod":
+      "npm run clear && NODE_ENV=production webpack && npm run compile && npm run css",
+    "-prepublish": "npm run prod"
   },
   "repository": {
     "type": "git",
@@ -24,9 +26,6 @@
   },
   "homepage": "https://github.com/zyy7259/ant-vue#readme",
   "devDependencies": {
-    "eslint-config-zoro-vue": "*",
-    "stylelint-config-zoro": "*",
-    "zoro-kit": "*",
     "zoro-kit-vue": "*"
   }
 }

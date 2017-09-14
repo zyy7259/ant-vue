@@ -21,38 +21,38 @@ import Icon from 'src/component/icon';
 
 const InputNumber = {
   components: {
-    Icon
+    Icon,
   },
   props: {
     min: {
       type: Number,
-      default: -Infinity
+      default: -Infinity,
     },
     max: {
       type: Number,
-      default: Infinity
+      default: Infinity,
     },
     maxlength: {
       type: Number,
-      default: Infinity
+      default: Infinity,
     },
     step: {
       type: [Number, String],
-      default: 1
+      default: 1,
     },
     value: {
       type: [Number, String],
-      default: ''
+      default: '',
     },
     disabled: {
       type: Boolean,
-      default: false
+      default: false,
     },
     // 是否在输入的时候进行校验和反馈
     simultaneous: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     return {
@@ -60,13 +60,13 @@ const InputNumber = {
       prevValue: '',
       error: false,
       reg: null,
-      acceptFloat: false
+      acceptFloat: false,
     };
   },
   computed: {
     valueChanged() {
       return +this.prevValue !== +this.currValue;
-    }
+    },
   },
   watch: {
     value: 'resetValue',
@@ -111,7 +111,7 @@ const InputNumber = {
       } else {
         this.$emit('errorclear');
       }
-    }
+    },
   },
   methods: {
     resetValue() {
@@ -172,7 +172,7 @@ const InputNumber = {
         this.prevValue = currValue;
         this.$emit('input', currValue);
       }
-    }
+    },
   },
   created() {
     this.resetValue();
@@ -184,7 +184,7 @@ const InputNumber = {
     }
     // init format reg
     this.reg = this.acceptFloat ? /[-+.0-9]+/ : /[0-9]+/;
-  }
+  },
 };
 
 export default InputNumber;
@@ -193,72 +193,3 @@ InputNumber.install = function install(Vue) {
   Vue.component('InputNumber', InputNumber);
 };
 </script>
-
-<style>
-.ant-input-number {
-  display: inline-block;
-  position: relative;
-  width: 88px;
-  height: 28px;
-  border: 1px solid #D9D9D9;
-  border-radius: 4px;
-  background-color: white;
-}
-
-.ant-input-number-input {
-  display: inline-block;
-  width: 100%;
-  height: 100%;
-  padding: 4px 30px 4px 8px;
-  line-height: 18px;
-  font-size: 12px;
-  color: #666;
-  border: 0;
-  border-radius: 4px;
-  background-color: transparent;
-}
-
-.ant-input-number-handler-wrap {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 22px;
-  border-left: 1px solid #D9D9D9;
-  border-radius: 0 4px 4px 0;
-}
-
-.ant-input-number-handler {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50%;
-  cursor: pointer;
-
-  .anticon {
-    font-size: 8px;
-  }
-}
-
-.ant-input-number-handler-down {
-  border-top: 1px solid #D9D9D9;
-}
-
-.ant-input-number-disabled,
-.ant-input-number-handler-disabled {
-  cursor: not-allowed;
-
-  .anticon {
-    color: #D8D8D8;
-  }
-}
-
-.ant-input-number-disabled {
-  pointer-events: none;
-  background-color: #F7F7F7;
-}
-
-.ant-input-number-error {
-  border-color: #FF5847;
-}
-</style>

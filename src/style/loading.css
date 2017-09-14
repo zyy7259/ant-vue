@@ -1,0 +1,16 @@
+.ant-loading-wrap {
+  .anticon-loading {
+    animation: spin 2s linear infinite;
+  }
+
+  &-inline {
+    display: inline-block;
+  }
+
+  .ant-loading-block {
+    .icon-wrap {
+      margin: 20px 0;
+      text-align: center;
+    }
+  }
+}

@@ -21,50 +21,50 @@ import Alert from './alert';
 const Loading = {
   components: {
     Icon,
-    Alert
+    Alert,
   },
   props: {
     loading: {
       type: Boolean,
-      default: false
+      default: false,
     },
     loadingClass: {
       type: String,
-      default: ''
+      default: '',
     },
     error: {
       type: [Object, String],
-      default: null
+      default: null,
     },
     hideError: {
       type: Boolean,
-      default: false
+      default: false,
     },
     promise: {
       type: Promise,
-      default: null
+      default: null,
     },
     inline: {
       type: Boolean,
-      default: false
+      default: false,
     },
     global: {
       type: Boolean,
-      default: false
+      default: false,
     },
     message: {
       type: String,
-      default: ''
+      default: '',
     },
     description: {
       type: String,
-      default: ''
-    }
+      default: '',
+    },
   },
   data() {
     return {
       loadingInner: false,
-      errorInner: null
+      errorInner: null,
     };
   },
   computed: {
@@ -76,12 +76,12 @@ const Loading = {
         return '';
       }
       return this.errorInner.msg || this.errorInner.message || 'unknown error';
-    }
+    },
   },
   watch: {
     loading: 'resetLoading',
     error: 'resetError',
-    promise: 'resetPromise'
+    promise: 'resetPromise',
   },
   methods: {
     resetLoading() {
@@ -101,13 +101,13 @@ const Loading = {
             this.loadingInner = false;
           });
       }
-    }
+    },
   },
   created() {
     this.resetLoading();
     this.resetError();
     this.resetPromise();
-  }
+  },
 };
 
 export default Loading;
@@ -116,22 +116,3 @@ Loading.install = function install(Vue) {
   Vue.component('Loading', Loading);
 };
 </script>
-
-<style lang='postcss'>
-.ant-loading-wrap {
-  .anticon-loading {
-    animation: spin 2s linear infinite;
-  }
-
-  &-inline {
-    display: inline-block;
-  }
-
-  .ant-loading-block {
-    .icon-wrap {
-      margin: 20px 0;
-      text-align: center;
-    }
-  }
-}
-</style>
