@@ -30,45 +30,45 @@ let Vue;
 const Modal = {
   components: {
     Btn,
-    Icon,
+    Icon
   },
   props: {
     visible: {
       type: Boolean,
-      default: false,
+      default: false
     },
     title: {
       type: String,
-      default: '',
+      default: ''
     },
     content: {
       type: [String, Array],
-      default: '',
+      default: ''
     },
     okText: {
       type: String,
-      default: '确 定',
+      default: '确 定'
     },
     cancelText: {
       type: String,
-      default: '取 消',
+      default: '取 消'
     },
     iconType: {
-      type: String,
+      type: String
     },
     maskClosable: {
       type: Boolean,
-      default: false,
+      default: false
     },
     onOK: {
       type: Function,
-      default: () => {},
-    },
+      default: () => {}
+    }
   },
   data() {
     return {
       confirmType: '',
-      oking: false,
+      oking: false
     };
   },
   computed: {
@@ -96,10 +96,10 @@ const Modal = {
         default:
           return '';
       }
-    },
+    }
   },
   watch: {
-    visible: 'onVisibleChange',
+    visible: 'onVisibleChange'
   },
   methods: {
     onVisibleChange() {
@@ -153,7 +153,7 @@ const Modal = {
       } else {
         return hide();
       }
-    },
+    }
   },
   mounted() {
     this.onVisibleChange();
@@ -166,22 +166,22 @@ const Modal = {
   },
   info() {
     return Modal.confirm({
-      confirmType: 'info',
+      confirmType: 'info'
     });
   },
   success() {
     return Modal.confirm({
-      confirmType: 'success',
+      confirmType: 'success'
     });
   },
   error() {
     return Modal.confirm({
-      confirmType: 'error',
+      confirmType: 'error'
     });
   },
   warning() {
     return Modal.confirm({
-      confirmType: 'warning',
+      confirmType: 'warning'
     });
   },
   confirm({ confirmType = 'confirm', ...props }) {
@@ -190,9 +190,18 @@ const Modal = {
       ...{
         propsData: { visible: true, ...props },
         data: { ...Modal.data(), confirmType },
-      },
+        mixins: [
+          {
+            created() {
+              this.$on('update:visible', visible => {
+                this.visible = visible;
+              });
+            }
+          }
+        ]
+      }
     });
-  },
+  }
 };
 
 export default Modal;
