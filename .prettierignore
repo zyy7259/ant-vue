@@ -4,3 +4,5 @@ es
 www
 dist
 dist_html
+
+!**/.*.js

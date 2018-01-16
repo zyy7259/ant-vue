@@ -1,8 +1,19 @@
-lib/
-dist/
-es/
+es
+lib
+dist
+dist_html
+_dist
+_package
+www
+run
+
 .history
 .idea
+.tea
+.svn
+.DS_Store
+.vscode-test/
+.vsix
 
 # Logs
 logs

@@ -11,43 +11,43 @@ import Icon from './icon';
 
 const Alert = {
   components: {
-    Icon,
+    Icon
   },
   props: {
     type: {
       type: String,
       validator(value) {
         return ['success', 'info', 'warning', 'error'].indexOf(value) !== -1;
-      },
+      }
     },
     closable: {
       type: Boolean,
-      default: false,
+      default: false
     },
     closeText: {
       type: String,
-      default: '',
+      default: ''
     },
     message: {
       type: String,
-      default: '',
+      default: ''
     },
     description: {
       type: String,
-      default: '',
+      default: ''
     },
     showIcon: {
       type: Boolean,
-      default: false,
+      default: false
     },
     banner: {
       type: Boolean,
-      default: false,
+      default: false
     },
     inline: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   data() {
     return {};
@@ -66,7 +66,7 @@ const Alert = {
         default:
           return '';
       }
-    },
+    }
   },
   methods: {
     onClose() {
@@ -74,8 +74,8 @@ const Alert = {
     },
     close() {
       this.$emit('close');
-    },
-  },
+    }
+  }
 };
 
 export default Alert;

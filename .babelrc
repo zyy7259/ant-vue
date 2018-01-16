@@ -1,5 +1,4 @@
 {
-  "presets": [
-    "./node_modules/zoro-kit/.babelrc.js"
-  ]
+  "presets": ["stage-0", ["env"]],
+  "plugins": ["add-module-exports"]
 }
